@@ -214,16 +214,16 @@ while quit==False:
         if game.difficulty=='Hard':
             game.spawn_count=50 
 
-        game.game_display.fill(game.black)
-        text_title = pygame.font.SysFont('Segoe UI',100)
+        game.game_display.blit(game.background,(0,0))
+        text_title = pygame.font.SysFont('Segoe UI',179)
         text_subt = pygame.font.SysFont('Segoe UI',75)
         text_subt2 = pygame.font.SysFont('Segoe UI',25)
-        title = text_title.render('Crash Balls',True,game.black,(200,100,100))
+        title = text_title.render('Crash Balls',True,(0,0,0),(100,100,100))
         subt1 = text_subt.render('Press "Space" to start',True,game.black,(200,200,0))
         subt2 = text_subt2.render('Use arrow keys to change:',True,game.black,(0,100,0))
         subt3 = text_subt2.render('Hardness:',True, (199,100,100))
         subt4 = text_subt2.render(game.difficulty,True,game.black,(100,0,100))
-        game.game_display.blit(title,(200,0))
+        game.game_display.blit(title,(0,0))
         game.game_display.blit(subt1,(100,200))
         game.game_display.blit(subt2,(300,400))
         game.game_display.blit(subt3,(300,500))
@@ -239,7 +239,7 @@ while quit==False:
 
     while game.crash==False:
         game.score+=1
-        game.game_display.fill(game.black)
+        game.game_display.blit(game.background,(0,0))
         for ball in balls:
             ball.moving_balls(game)
         for event in pygame.event.get():
@@ -278,7 +278,7 @@ while quit==False:
         
         if check_collision(player,balls) or player_crashed(player,game):
             game.crash=True
-            game.game_display.blit(game.explosion,player.rect_coord.center)
+            game.game_display.blit(game.explosion,player.rect_coord.topleft)
             pygame.display.update()
             time.sleep(2)
         display_score(game)   
